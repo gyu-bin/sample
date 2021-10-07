@@ -34,7 +34,7 @@ class Route extends React.Component {
             <RouterContext.Consumer>
                 {context => {
                     invariant(context, "You should not use <Route> outside a <Router>");
-
+                    //invariant: 불변의
                     const location = this.props.location || context.location;
                     const match = this.props.computedMatch
                         ? this.props.computedMatch // <Switch> already computed the match for us
