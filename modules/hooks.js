@@ -8,6 +8,7 @@ import matchPath from "./matchPath.js";
 const useContext = React.useContext;
 
 export function useHistory() {
+    let __DEV__;
     if (__DEV__) {
         invariant(
             typeof useContext === "function",
@@ -19,6 +20,7 @@ export function useHistory() {
 }
 
 export function useLocation() {
+    let __DEV__;
     if (__DEV__) {
         invariant(
             typeof useContext === "function",
@@ -30,6 +32,7 @@ export function useLocation() {
 }
 
 export function useParams() {
+    let __DEV__;
     if (__DEV__) {
         invariant(
             typeof useContext === "function",
@@ -42,6 +45,7 @@ export function useParams() {
 }
 
 export function useRouteMatch(path) {
+    let __DEV__;
     if (__DEV__) {
         invariant(
             typeof useContext === "function",

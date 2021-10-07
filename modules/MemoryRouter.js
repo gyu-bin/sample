@@ -16,6 +16,7 @@ class MemoryRouter extends React.Component {
     }
 }
 
+let __DEV__;
 if (__DEV__) {
     MemoryRouter.propTypes = {
         initialEntries: PropTypes.array,
@@ -25,7 +26,7 @@ if (__DEV__) {
         children: PropTypes.node
     };
 
-    MemoryRouter.prototype.componentDidMount = function() {
+    MemoryRouter.prototype.componentDidMount = function() { //생성될때.
         warning(
             !this.props.history,
             "<MemoryRouter> ignores the history prop. To use a custom history, " +

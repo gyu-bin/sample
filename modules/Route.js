@@ -1,7 +1,7 @@
 import React from "react";
 import { isValidElementType } from "react-is";
 //react-is:이 패키지를 사용하면 임의 값을 테스트하여 특정 반응 요소 유형인지 확인할 수 있습니다.
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"; //타입을 확인함.
 import invariant from "tiny-invariant";
 import warning from "tiny-warning";
 
@@ -36,8 +36,8 @@ class Route extends React.Component {
                     invariant(context, "You should not use <Route> outside a <Router>");
                     //invariant: 불변의
                     const location = this.props.location || context.location;
-                    const match = this.props.computedMatch
-                        ? this.props.computedMatch // <Switch> already computed the match for us
+                    const match = this.props.computedMatch?
+                        this.props.computedMatch // <Switch> already computed the match for us
                         : this.props.path
                             ? matchPath(location.pathname, this.props)
                             : context.match;
@@ -84,6 +84,7 @@ let __DEV__;
 if (__DEV__) {
     Route.propTypes = {
         children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+        //PropTypes.node & func 타입검사 하는듯.
         component: (props, propName) => {
             if (props[propName] && !isValidElementType(props[propName])) {
                 return new Error(
@@ -102,7 +103,7 @@ if (__DEV__) {
         strict: PropTypes.bool
     };
 
-    Route.prototype.componentDidMount = function() {
+    Route.prototype.componentDidMount = function() { //렌더링을 생성할때
         warning(
             !(
                 this.props.children &&
@@ -114,9 +115,8 @@ if (__DEV__) {
 
         warning(
             !(
-                this.props.children &&
-                !isEmptyChildren(this.props.children) &&
-                this.props.render
+                this.props.children &&!isEmptyChildren(this.props.children) && this.props.render
+                //이 3개의 조건에 중족하지 않다면 아래의 메시지를 출력한다.
             ),
             "You should not use <Route render> and <Route children> in the same route; <Route render> will be ignored"
         );
@@ -127,7 +127,7 @@ if (__DEV__) {
         );
     };
 
-    Route.prototype.componentDidUpdate = function(prevProps) {
+    Route.prototype.componentDidUpdate = function(prevProps) { //렌더링을 업데이트 할때
         warning(
             !(this.props.location && !prevProps.location),
             '<Route> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.'

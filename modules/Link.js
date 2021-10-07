@@ -64,6 +64,7 @@ const LinkAnchor = forwardRef(
     }
 );
 
+let __DEV__;
 if (__DEV__) {
     LinkAnchor.displayName = "LinkAnchor";
 }
