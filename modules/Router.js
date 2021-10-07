@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"; //타입을 확인함.
 import warning from "tiny-warning";
 
 import HistoryContext from "./HistoryContext.js";
@@ -9,7 +9,7 @@ import RouterContext from "./RouterContext.js";
  * The public API for putting history on context.
  */
 class Router extends React.Component {
-    static computeRootMatch(pathname) {
+    static computeRootMatch(pathname) { //경로명?
         return { path: "/", url: "/", params: {}, isExact: pathname === "/" };
     }
 
@@ -39,7 +39,7 @@ class Router extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount() { //생성될때
         this._isMounted = true;
 
         if (this._pendingLocation) {
@@ -47,7 +47,7 @@ class Router extends React.Component {
         }
     }
 
-    componentWillUnmount() {
+    componentWillUnmount() { //제거될때
         if (this.unlisten) this.unlisten();
     }
 
@@ -70,6 +70,7 @@ class Router extends React.Component {
     }
 }
 
+let __DEV__;
 if (__DEV__) {
     Router.propTypes = {
         children: PropTypes.node,

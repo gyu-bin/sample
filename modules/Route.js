@@ -1,5 +1,6 @@
 import React from "react";
 import { isValidElementType } from "react-is";
+//react-is:이 패키지를 사용하면 임의 값을 테스트하여 특정 반응 요소 유형인지 확인할 수 있습니다.
 import PropTypes from "prop-types";
 import invariant from "tiny-invariant";
 import warning from "tiny-warning";
@@ -51,6 +52,7 @@ class Route extends React.Component {
                         children = null;
                     }
 
+                    let __DEV__;
                     return (
                         <RouterContext.Provider value={props}>
                             {props.match
@@ -78,6 +80,7 @@ class Route extends React.Component {
     }
 }
 
+let __DEV__;
 if (__DEV__) {
     Route.propTypes = {
         children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
