@@ -1,17 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useEffect, useRef } from 'react'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function DangerouslySetHtmlContent(props) {
+    const { html, ...rest } = props
+    const divRef = useRef(null)
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    useEffect(() => {
+        if (!html) return
+
+        const slotHtml = document.createRange().createContextualFragment(html) // Create a 'tiny' document and parse the html string
+        divRef.current.innerHTML = '' // Clear the container
+        divRef.current.appendChild(slotHtml) // Append the new content
+    }, [html])
+
+
+    return (
+        <div {...rest} ref={divRef}></div>
+    )
+}
+
+export default DangerouslySetHtmlContent
